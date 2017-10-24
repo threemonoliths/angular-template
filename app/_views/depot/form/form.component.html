@@ -1,0 +1,98 @@
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+        <form [formGroup]="depotForm" novalidate>
+        <div class="card card-w-title">
+
+            <p-panel [header]="title" [toggleable]="true">
+
+            <div class="ui-g form-group">
+
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input id="DepotName" type="text" pInputText formControlName="DepotName" class="ng-dirty ng-invalid">
+                        <label>仓库名称</label>
+
+                        
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="(depotForm.controls['DepotName'].touched || submitted) && 
+                               !depotForm.controls['DepotName'].valid &&
+                               depotForm.controls['DepotName'].errors?.required ">
+                            *仓库名称必填
+                        </div>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="depotForm.controls['DepotName'].errors?.pattern">
+                             *只能使用字母、数字
+                        </div>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="depotForm.controls['DepotName'].errors?.minlength || depotForm.controls['DepotName'].errors?.maxlength">
+                            *仓库名称长度为4～30个字符
+                        </div>
+                        
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="depotForm.controls['DepotName'].errors?.checkDepotName">
+                            *仓库名称已存在
+                        </div>
+                        
+                    </span>
+                </div>
+
+              
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText formControlName="OilName">
+                        <label>油品名称</label>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="(depotForm.controls['OilName'].touched || submitted) && 
+                               depotForm.controls['OilName'].errors?.required ">
+                            *油品名称必填
+                        </div>
+                    </span>
+                </div>
+                
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText formControlName="DepotIDDR">
+                        <label>仓库地址</label>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="(depotForm.controls['DepotIDDR'].touched || submitted) && 
+                               depotForm.controls['DepotIDDR'].errors?.required ">
+                            *仓库地址必填
+                        </div>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText formControlName="Kind">
+                        <label>类型</label>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="(depotForm.controls['Kind'].touched || submitted) && 
+                                depotForm.controls['Kind'].errors?.required ">
+                            *类型必填
+                        </div>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText formControlName="Company_Id">
+                        <label>所属公司</label>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="(depotForm.controls['Company_Id'].touched || submitted) && 
+                               depotForm.controls['Company_Id'].errors?.required ">
+                            *所属公司必填
+                        </div>
+                    </span>
+                </div>
+            
+            </div>
+        
+            </p-panel>
+            <p-toolbar>
+                <div class="ui-toolbar-group-left">
+                    <button pButton type="button" icon="ui-icon-save" class="green-btn" (click)="onSubmit()"></button>
+                    <button pButton type="reset" icon="ui-icon-autorenew" class="orange-btn"></button>
+                </div>
+            </p-toolbar>
+        </div>
+        </form>
+    </div>
+</div>

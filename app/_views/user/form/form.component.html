@@ -1,0 +1,106 @@
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+        <form [formGroup]="userForm" novalidate>
+        <div class="card card-w-title">
+
+            <p-panel [header]="title" [toggleable]="true">
+
+            <div class="ui-g form-group">
+
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input id="username" type="text" pInputText formControlName="username" class="ng-dirty ng-invalid">
+                        <label>用户名</label>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="(userForm.controls['username'].touched || submitted) && 
+                               !userForm.controls['username'].valid &&
+                               userForm.controls['username'].errors?.required ">
+                            *用户名必填
+                        </div>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="userForm.controls['username'].errors?.pattern">
+                             *只能使用字母、数字、下划线，且已字母开头
+                        </div>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="userForm.controls['username'].errors?.minlength || userForm.controls['username'].errors?.maxlength">
+                            *用户名长度为4～30个字符
+                        </div>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="userForm.controls['username'].errors?.checkUserName">
+                            *用户已存在
+                        </div>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input id="email" type="text" pInputText formControlName="email">
+                        <label>邮箱</label>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="(userForm.controls['email'].touched || submitted) && !userForm.controls['email'].valid">
+                            *邮箱必填
+                        </div>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText formControlName="fullname">
+                        <label>姓名</label>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText formControlName="position">
+                        <label>岗位</label>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input type="password" pInputText formControlName="password" class="ng-dirty ng-invalid">
+                        <label>密码</label>
+                         <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="(userForm.controls['password'].touched || submitted) && !userForm.controls['password'].valid">
+                            *密码必填
+                        </div> 
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="userForm.controls['password'].errors?.minlength || userForm.controls['password'].errors?.maxlength">
+                            *密码长度至少为6个字符
+                        </div>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input type="password" pInputText formControlName="repeat">
+                        <label>确认密码</label>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="(userForm.controls['password'].touched || submitted) && userForm.errors?.passwordConfirming">
+                            *密码输入不一致
+                        </div>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-12">
+                    <div>
+                            <!--<h1>PickList</h1>-->
+                            <p-pickList [source]="sourceRoles" [target]="targetRoles" sourceHeader="可选角色" targetHeader="已选角色" [responsive]="true" dragdrop="true"
+                                [sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}" >
+                                <ng-template let-role pTemplate="item">
+                                    <div class="ui-helper-clearfix">
+                                        <div style="font-size:15px;float:left;margin:15px 15px 0 0">{{role.rolename}}</div>
+                                    </div>
+                                </ng-template>
+                            </p-pickList>
+                    </div>
+                </div>
+            </div>
+        
+            </p-panel>
+            <p-toolbar>
+                <div class="ui-toolbar-group-left">
+
+                    <button pButton type="button" icon="ui-icon-save" class="green-btn" (click)="onSubmit()"></button>
+                    <button pButton type="reset" icon="ui-icon-autorenew" class="orange-btn"></button>
+                </div>
+            </p-toolbar>
+        </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,115 @@
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+        <form [formGroup]="companyForm" novalidate>
+           <div class="card card-w-title">
+            <p-panel [header]="title" [toggleable]="true">
+            <div class="ui-g form-group">
+
+                
+                 <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input id="companyname" type="text" pInputText formControlName="companyname" class="ng-dirty ng-invalid">
+                        <label>公司名称</label>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="(companyForm.controls['companyname'].touched || submitted) && 
+                               !companyForm.controls['companyname'].valid &&
+                               companyForm.controls['companyname'].errors?.required ">
+                            *公司名称必填
+                        </div>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="companyForm.controls['companyname'].errors?.pattern">
+                             *只能使用字母、数字
+                        </div>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="companyForm.controls['companyname'].errors?.minlength || companyForm.controls['companyname'].errors?.maxlength">
+                            *公司名称长度为4～30个字符
+                        </div>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="companyForm.controls['companyname'].errors?.checkCompanyName">
+                            *公司名称已存在
+                        </div>
+                        
+                    </span>
+                </div>
+
+                
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText formControlName="companyiddr">
+                        <label>公司地址</label>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="(companyForm.controls['companyiddr'].touched || submitted) && 
+                               companyForm.controls['companyiddr'].errors?.required ">
+                            *公司地址必填
+                        </div>
+                    </span>
+                </div>
+                
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText formControlName="legalperson">
+                        <label>法定代表人</label>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="(companyForm.controls['legalperson'].touched || submitted) && 
+                               companyForm.controls['legalperson'].errors?.required ">
+                            *法定代表人必填
+                        </div>
+                    </span>  
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText formControlName="bank">
+                        <label>银行</label>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="(companyForm.controls['bank'].touched || submitted) && 
+                               companyForm.controls['bank'].errors?.required ">
+                            *银行必填
+                        </div>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText formControlName="accountnumber">
+                        <label>账号</label>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="(companyForm.controls['accountnumber'].touched || submitted) && 
+                               companyForm.controls['accountnumber'].errors?.required ">
+                            *账号必填
+                        </div>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText formControlName="zipcode">
+                        <label>邮编</label>
+                        
+                    </span>
+                </div>
+
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText formControlName="dutyparagraph">
+                        <label>税号</label>
+                      
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText formControlName="kind">
+                        <label>公司类型</label>
+                       
+                    </span>
+                </div>
+            </div> 
+        
+            </p-panel>
+            <p-toolbar>
+                <div class="ui-toolbar-group-left">
+                    <button pButton type="button" icon="ui-icon-save" class="green-btn" (click)="onSubmit()"></button>
+                    <button pButton type="reset" icon="ui-icon-autorenew" class="orange-btn"></button>
+                </div>
+            </p-toolbar>
+        </div>
+        </form>
+    </div>
+</div>

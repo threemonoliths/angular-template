@@ -1,0 +1,146 @@
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+        <form [formGroup]="contractForm" novalidate>
+        <div class="card card-w-title">
+
+            <p-panel [header]="title" [toggleable]="true">
+
+            <div class="ui-g form-group">
+
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input id="contractno" type="text" pInputText formControlName="contractno" class="ng-dirty ng-invalid" [readonly]="!editable">
+                        <label>合同号</label>
+
+                        
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="(contractForm.controls['contractno'].touched || submitted) && 
+                               !contractForm.controls['contractno'].valid &&
+                               contractForm.controls['contractno'].errors?.required ">
+                            *合同号必填
+                        </div>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="contractForm.controls['contractno'].errors?.pattern">
+                             *只能使用字母、数字
+                        </div>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="contractForm.controls['contractno'].errors?.minlength || contractForm.controls['contractno'].errors?.maxlength">
+                            *合同号长度为4～30个字符
+                        </div>
+                        <!--
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="userForm.controls['username'].errors?.checkUserName">
+                            *用户已存在
+                        </div>-->
+                        
+                    </span>
+                </div>
+
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <p-calendar id="calendar" formControlName="signdate" placeholder="签订日期" dateFormat="yy.mm.dd" dataType="string" [locale]="en" [disabled]="!editable"></p-calendar>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="(contractForm.controls['signdate'].touched || submitted) && 
+                               contractForm.controls['signdate'].errors?.required ">
+                            *签订时间必填
+                        </div>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText formControlName="signplace" [readonly]="!editable">
+                        <label>签订地点</label>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="(contractForm.controls['signplace'].touched || submitted) && 
+                               contractForm.controls['signplace'].errors?.required ">
+                            *签订地点必填
+                        </div>
+                    </span>
+                </div>
+                
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText formControlName="totalprice" [readonly]="!editable" >
+                        <label>合同额</label>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="(contractForm.controls['totalprice'].touched || submitted) && 
+                               contractForm.controls['totalprice'].errors?.required ">
+                            *合同额必填
+                        </div>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf=" (contractForm.controls['totalprice'].touched || submitted) && 
+                                !contractForm.controls['totalprice'].errors?.required && contractForm.controls['totalprice'].errors?.validateNumber ">
+                            *请输入有效数字
+                        </div>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText formControlName="firstparty" [readonly]="!editable" >
+                        <label>甲方</label>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="(contractForm.controls['firstparty'].touched || submitted) && 
+                               contractForm.controls['firstparty'].errors?.required ">
+                            *甲方名称必填
+                        </div>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText formControlName="secondparty" [readonly]="!editable">
+                        <label>乙方</label>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="(contractForm.controls['secondparty'].touched || submitted) && 
+                               contractForm.controls['secondparty'].errors?.required ">
+                            *乙方名称必填
+                        </div>
+                    </span>
+                </div>
+
+                <div class="ui-g-12 ui-md-12">
+                        <span class="md-inputfield">
+                            
+                            <div class="ui-message ui-messages-error ui-corner-all" 
+                            *ngIf="submitted && 
+                                   !detailsChecked ">
+                                *请确保下面的明细表中每条明细记录的“数量”、“单价”、“总价”字段为有效数字
+                            </div>
+                        </span>
+                    </div>
+               
+                <div class="ui-g-12 ui-md-12">
+                    <div>
+                        <p-toolbar>
+                            <div class="ui-toolbar-group-left">
+                                <button pButton type="button" icon="ui-icon-add" class="green-btn" (click)="addContractDetail()"></button>
+                                <button pButton type="button" icon="ui-icon-delete" class="red-btn" (click)="deleteContractDetail()"></button>
+                            </div>
+                        </p-toolbar>
+                        <p-dataTable [value]="details" [editable]="yesorno" dataKey="id" [(selection)]="selectedDetail"  #dt>
+                            <p-column [style]="{'width':'38px'}" selectionMode="single"></p-column>
+                            <p-column field="id" header="id" hidden="true" ></p-column>
+                            <p-column field="product" header="产品"  [editable]="true"></p-column>
+                            <p-column field="model" header="型号" [editable]="true"></p-column>
+                            <p-column field="productor" header="生产商" [editable]="true"></p-column>
+                            <p-column field="quantity" header="数量" [editable]="true"></p-column>
+                            <p-column field="unit" header="单位" [editable]="true"></p-column>
+                            <p-column field="price" header="单价" [editable]="true"></p-column>
+                            <p-column field="total" header="总价" [editable]="true"></p-column>
+                        </p-dataTable>
+   
+                    </div>
+                </div>
+            </div>
+        
+            </p-panel>
+            <p-toolbar>
+                <div class="ui-toolbar-group-left">
+                    <button pButton type="button" icon="ui-icon-save" class="green-btn" (click)="onSubmit()"></button>
+                    <button pButton type="reset" icon="ui-icon-autorenew" class="orange-btn"></button>
+                    <button pButton type="button" icon="ui-icon-check" class="pink-btn" (click)="onAudited()"></button>
+               </div>
+            </p-toolbar>
+        </div>
+        </form>
+    </div>
+</div>

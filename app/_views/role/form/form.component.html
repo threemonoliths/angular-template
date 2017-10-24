@@ -1,0 +1,61 @@
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+        <form [formGroup]="roleForm" novalidate>
+        <div class="card card-w-title">
+
+            <p-panel header="创建角色" [toggleable]="true">
+
+            <div class="ui-g form-group">
+
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <!--<p-growl [value]="eventbusService.msgs" sticky="sticky"></p-growl>-->
+                        <input id="rolename" type="text" pInputText formControlName="rolename" class="ng-dirty ng-invalid" >
+                        <label>角色名称</label>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="roleForm.controls['rolename'].touched && 
+                               !roleForm.controls['rolename'].valid &&
+                               roleForm.controls['rolename'].errors?.required ">
+                            *角色名必填
+                        </div>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="roleForm.controls['rolename'].errors?.pattern">
+                             *只能使用字母、数字、下划线，且已字母开头
+                        </div>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="roleForm.controls['rolename'].errors?.minlength || roleForm.controls['rolename'].errors?.maxlength">
+                            *角色名长度为4～30个字符
+                        </div>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="roleForm.controls['rolename'].errors?.checkRoleName">
+                            *角色已存在
+                        </div>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-12">
+                <div>
+                    <!--<h1>PickList</h1>-->
+                    <p-pickList [source]="sourcePermissions" [target]="targetPermissions" sourceHeader="可选权限" targetHeader="已选权限" [responsive]="true"
+                        [sourceStyle]="{'height':'250px'}" [targetStyle]="{'height':'250px'}">
+                        <ng-template let-permission pTemplate="item">
+                            <div class="ui-helper-clearfix">
+                                <div style="font-size:16px;float:left;margin:15px 5px 0 0">{{permission.pname}}</div>
+                            </div>
+                        </ng-template>
+                    </p-pickList>
+                </div>
+                </div>
+            </div>
+        
+            </p-panel>
+            <p-toolbar>
+                <div class="ui-toolbar-group-left">
+
+                    <button pButton type="button" icon="ui-icon-save" class="green-btn" (click)="onSubmit()"></button>
+                    <button pButton type="reset" icon="ui-icon-autorenew" class="orange-btn"></button>
+                </div>
+            </p-toolbar>
+        </div>
+        </form>
+    </div>
+</div>

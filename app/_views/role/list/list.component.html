@@ -1,0 +1,41 @@
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+        <div class="card card-w-title">
+            <div class="ui-g form-group">
+                <div class="ui-g-12 ui-md-2">
+                    <span class="md-inputfield">
+
+                         <!-- <input type="text" pInputText  >  -->
+                          <input type="text" pInputText  [(ngModel)]="model.rolename" (keyup)="search()">  
+
+                        
+
+                        <label>角色名</label>
+                     </span>
+                </div>
+                
+            </div>
+            <!--<p-messages [value]="msgs"></p-messages>-->
+            <!--<p-growl [value]="eventbusService.msgs" sticky="sticky"></p-growl>-->
+            <p-toolbar>
+                <div class="ui-toolbar-group-left">
+                    <button pButton type="button" icon="ui-icon-search" class="blue-btn" title='搜索'></button>
+                    <!-- <button pButton type="button" icon="ui-icon-add" class="green-btn" (click)="newRole()"></button> -->
+                    <button pButton type="button" icon="ui-icon-update" class="orange-btn" (click)="updateRole()" title='修改'></button>
+                    <!-- <button pButton type="button" icon="ui-icon-delete" class="red-btn" (click)="deleteRole()"></button> -->
+                </div>
+            </p-toolbar>
+            
+            <p-dataTable [value]="roleList" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]"  dataKey="rolename" [(selection)]="selectedRoles" [globalFilter]="gb" #dt>
+                <p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>
+                <p-column field="rolename" header="角色名" [sortable]="true" [editable]="true" [filter]="true" ></p-column>
+                
+            </p-dataTable>
+        </div>
+    </div>
+    <div class="ui-g-12">
+        
+    </div>
+</div>
+
+<p-confirmDialog header="请确认" icon="ui-icon-search" width="425" acceptLabel="确定" rejectLabel="取消"></p-confirmDialog>

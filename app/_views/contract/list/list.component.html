@@ -1,0 +1,54 @@
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+        <div class="card card-w-title">
+            <div class="ui-g form-group">
+                <div class="ui-g-12 ui-md-2">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText [(ngModel)]="model.contractno" (keyup)="search()">
+                        <label>合同号</label>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-2">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText [(ngModel)]="model.signdate" (keyup)="search()">
+                        <label>签订时间</label>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-2">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText [(ngModel)]="model.secondparty" (keyup)="search()">
+                        <label>乙方</label>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-2">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText [(ngModel)]="model.audited" (keyup)="search()">
+                        <label>审核状态</label>
+                    </span>
+                </div>
+            </div>
+            <p-toolbar>
+                <div class="ui-toolbar-group-left">
+                    <button pButton type="button" icon="ui-icon-add" class="green-btn" (click)="new()" title="创建"></button>
+                    <button pButton type="button" icon="ui-icon-update" class="orange-btn" (click)="update()" title="修改"></button>
+                    <button pButton type="button" icon="ui-icon-check" class="pink-btn" (click)="audit()"  title="审核"></button>
+                    <button pButton type="button" icon="ui-icon-delete" class="red-btn" (click)="delete()" title="删除"></button>
+                </div>
+            </p-toolbar>
+            <p-dataTable [value]="contractList" [rows]="recordsPerPage" [paginator]="true" [pageLinks]="3"  dataKey="contractno" 
+                         [lazy]="true" [totalRecords]="totalRecords" (onLazyLoad)="loadLazy($event)"  (onSort)="mySort($event)"
+                         [(selection)]="selectedContract" [globalFilter]="gb" #dt>
+                <p-column [style]="{'width':'38px'}" selectionMode="single"></p-column>
+                <p-column field="contractno" header="合同号" sortable="true" ></p-column>
+                <p-column field="signdate" header="签订时间" [sortable]="true" [editable]="true"  ></p-column>
+                <p-column field="signplace" header="签订地点" [sortable]="true" [editable]="true"  ></p-column>
+                <p-column field="totalprice" header="合同额" [sortable]="true" [editable]="true"  ></p-column>
+                <p-column field="firstparty" header="甲方" [sortable]="true" [editable]="true" ></p-column>
+                <p-column field="secondparty" header="乙方" [sortable]="true" [editable]="true" ></p-column>
+            </p-dataTable>
+        </div>
+    </div>
+
+</div>
+
+<p-confirmDialog header="请确认" icon="ui-icon-search" width="425" acceptLabel="确定" rejectLabel="取消"></p-confirmDialog>

@@ -1,0 +1,83 @@
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+        <form [formGroup]="godownentryForm" novalidate>
+        <div class="card card-w-title">
+
+            <p-panel [header]="title" [toggleable]="true">
+
+            <div class="ui-g form-group">
+                  
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input id="BillNo" type="text" pInputText formControlName="BillNo" class="ng-dirty ng-invalid">
+                        <label>单号</label>
+
+                        
+                        
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                        <span class="md-inputfield">
+                            <input id="Contractno" type="text" pInputText formControlName="Contractno" class="ng-dirty ng-invalid">
+                            <label>合同号</label>
+    
+                            
+                            
+                        </span>
+                    </div>
+                    <div class="ui-g-12 ui-md-4">
+                            <span class="md-inputfield">
+                                <input id="Supplier" type="text" pInputText formControlName="Supplier" class="ng-dirty ng-invalid">
+                                <label>供应单位名称</label>
+        
+                                
+                                
+                            </span>
+                        </div>  
+               
+            
+           
+                                      
+                <div class="ui-g-12 ui-md-12">
+                    <div>
+                        <p-toolbar>
+                            <div class="ui-toolbar-group-left">
+                                <button pButton type="button" icon="ui-icon-add" class="green-btn" (click)="addGodownentryDetail()"></button>
+                                <button pButton type="button" icon="ui-icon-delete" class="red-btn" (click)="deleteGodownentryDetail()"></button>
+                            </div>
+                        </p-toolbar>
+                        <p-dataTable [value]="details" [editable]="true" dataKey="id" [(selection)]="selectedDetail" #dt>
+                            <p-column [style]="{'width':'38px'}" selectionMode="single"></p-column>
+                            <p-column field="id" header="id" hidden="true" ></p-column>
+                            <p-column field="Oilname" header="油品名称" [editable]="true"></p-column>
+                            <p-column field="Planquantity" header="计划采购量" [editable]="true"></p-column>
+                            <p-column field="Realquantity" header="实际数量" [editable]="true"></p-column>
+                            <p-column field="Price" header="入库单价" [editable]="true"></p-column>
+                            <p-column field="Total" header="zongjia" [editable]="true"></p-column>
+                            
+                            <p-column field="Stockplace" header="库存地" [sortable]="true" [editable]="true" ></p-column>
+                            <p-column field="Buyer" header="采购员" [sortable]="true" [editable]="true" ></p-column>
+                            <p-column field="Examiner" header="验收员" [sortable]="true" [editable]="true" ></p-column>
+                            <p-column field="Accountingclerk" header="核算员" [sortable]="true" [editable]="true" ></p-column>
+                            <p-column field="Comment" header="备注" [sortable]="true" [editable]="true" ></p-column>
+                          
+                        </p-dataTable>
+   
+                  </div>
+                  </div>
+                  
+                
+</div>
+
+                </p-panel>
+            <p-toolbar>
+                
+                <div class="ui-toolbar-group-left">
+                    <button pButton type="button" icon="ui-icon-save" class="green-btn" (click)="onSubmit()"></button>
+                    <button pButton type="reset" icon="ui-icon-autorenew" class="orange-btn"></button>
+                </div>
+            </p-toolbar>
+        </div>
+        </form>
+    </div>
+</div>

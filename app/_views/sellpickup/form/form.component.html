@@ -1,0 +1,101 @@
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+        <form [formGroup]="sellpickupForm" novalidate>
+        <div class="card card-w-title">
+
+            <p-panel [header]="title" [toggleable]="true">
+
+            <div class="ui-g form-group">
+                        
+                                        <div class="ui-g-12 ui-md-4">
+                                            <span class="md-inputfield">
+                                                <input id="companyname" type="text" pInputText formControlName="companyname" class="ng-dirty ng-invalid">
+                                                <label>单号</label>
+                        
+                                                
+                                                
+                                            </span>
+                                        </div>
+                                        <div class="ui-g-12 ui-md-4">
+                                                <span class="md-inputfield">
+                                                    <input id="date" type="text" pInputText formControlName="date" class="ng-dirty ng-invalid">
+                                                    <label>日期</label>
+                            
+                                                    
+                                                    
+                                                </span>
+                                            </div>
+                                            <div class="ui-g-12 ui-md-4">
+                                                    <span class="md-inputfield">
+                                                        <input id="responsibleperson" type="text" pInputText formControlName="responsibleperson" class="ng-dirty ng-invalid">
+                                                        <label>负责人</label>
+                                
+                                                        
+                                                        
+                                                    </span>
+                                                </div>
+
+                                                <div class="ui-g-12 ui-md-4">
+                                                    <span class="md-inputfield">
+                                                        <input id="audtior" type="text" pInputText formControlName="auditor" class="ng-dirty ng-invalid">
+                                                        <label>审核人</label>
+                                
+                                                        
+                                                        
+                                                    </span>
+                                                </div>
+                                                <div class="ui-g-12 ui-md-4">
+                                                    <span class="md-inputfield">
+                                                        <input id="operator" type="text" pInputText formControlName="operator" class="ng-dirty ng-invalid">
+                                                        <label>经办人</label>
+                                
+                                                        
+                                                        
+                                                    </span>
+                                                </div>
+                                    
+                                      
+                <div class="ui-g-12 ui-md-12">
+                    <div>
+                        <p-toolbar>
+                            <div class="ui-toolbar-group-left">
+                                <button pButton type="button" icon="ui-icon-add" class="green-btn" (click)="addSellpickupDetail()"></button>
+                                <button pButton type="button" icon="ui-icon-delete" class="red-btn" (click)="deleteSellpikcupDetail()"></button>
+                            </div>
+                        </p-toolbar>
+                        <p-dataTable [value]="details" [editable]="true" dataKey="id" [(selection)]="selectedDetail" #dt>
+                            <p-column [style]="{'width':'38px'}" selectionMode="single"></p-column>
+
+                             <p-column field="id" header="id" hidden="true" ></p-column>
+                            <p-column field="stockcompany" header="存货单位" [sortable]="true" [editable]="true"  ></p-column>
+                            <p-column field="variety" header="品种" [sortable]="true" [editable]="true"  ></p-column>
+                            <p-column field="lastt" header="上期结存吨" [sortable]="true" [editable]="true"  ></p-column>
+                            <p-column field="lastl" header="上期结存升" [sortable]="true" [editable]="true"  ></p-column>
+                            <p-column field="stockt" header="本月存油吨" [sortable]="true" [editable]="true"  ></p-column>
+                            <p-column field="stockl" header="本月存油升" [sortable]="true" [editable]="true"  ></p-column>
+                            <p-column field="monthpickupt" header="本月提用吨" [sortable]="true" [editable]="true"  ></p-column>
+                            <p-column field="monthpickupl" header="本月提用升" [sortable]="true" [editable]="true"  ></p-column>
+            
+                            <p-column field="monthstockt" header="本月提用吨" [sortable]="true" [editable]="true"  ></p-column>
+                            <p-column field="monthstockl" header="本月结存升" [sortable]="true" [editable]="true"  ></p-column>
+                          
+                        </p-dataTable>
+   
+                  </div>
+                  </div>
+                  
+                
+        </div>
+        </p-panel>
+     
+            <p-toolbar>
+                
+                <div class="ui-toolbar-group-left">
+                    <button pButton type="button" icon="ui-icon-save" class="green-btn" (click)="onSubmit()"></button>
+                    <button pButton type="reset" icon="ui-icon-autorenew" class="orange-btn"></button>
+                </div>
+            </p-toolbar>
+        </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,106 @@
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+        <form [formGroup]="dictionaryForm" novalidate>
+        <div class="card card-w-title">
+
+            <p-panel [header]="title" [toggleable]="true">
+
+            <div class="ui-g form-group">
+
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input id="Code" type="text" pInputText formControlName="Code" class="ng-dirty ng-invalid">
+                        <label>编码</label>
+                         <div class="ui-message ui-messages-error ui-corner-all"
+                        *ngIf="dictionaryForm.controls['Code'].touched &&
+                               !dictionaryForm.controls['Code'].valid &&
+                                dictionaryForm.controls['Code'].errors?.required ">
+                            *编码必填
+                        </div>
+                        <div class="ui-message ui-messages-error ui-corner-all"
+                        *ngIf="dictionaryForm.controls['Code'].errors?.pattern">
+                             *只能使用字母、数字、下划线，且已字母开头
+                        </div>
+                        <div class="ui-message ui-messages-error ui-corner-all"
+                        *ngIf="dictionaryForm.controls['Code'].errors?.minlength || dictionaryForm.controls['Code'].errors?.maxlength">
+                            *编码长度为4～30个字符
+                        </div>
+                        <div class="ui-message ui-messages-error ui-corner-all"
+                        *ngIf="dictionaryForm.controls['Code'].errors?.forbiddenNameValidator">
+                            *编码已存在
+                        </div> 
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input id="Name" type="text" pInputText formControlName="Name">
+                        <label>名称</label>
+                         <div class="ui-message ui-messages-error ui-corner-all"
+                        *ngIf="dictionaryForm.controls['Name'].touched && !dictionaryForm.controls['Name'].valid">
+                            *名称必填
+                        </div> 
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText formControlName="Key">
+                        <label>键</label>
+                         <div class="ui-message ui-messages-error ui-corner-all"
+                        *ngIf="dictionaryForm.controls['Key'].touched && !dictionaryForm.controls['Key'].valid">
+                            *键必填
+                        </div> 
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText formControlName="Parm">
+                        <label>值</label>
+                         <div class="ui-message ui-messages-error ui-corner-all"
+                        *ngIf="dictionaryForm.controls['Parm'].touched && !dictionaryForm.controls['Parm'].valid">
+                            *值必填
+                        </div> 
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText formControlName="Value">
+                        <label>值</label>
+                         <div class="ui-message ui-messages-error ui-corner-all"
+                        *ngIf="dictionaryForm.controls['Value'].touched && !dictionaryForm.controls['Value'].valid">
+                            *值必填
+                        </div>
+                         <div class="ui-message ui-messages-error ui-corner-all"
+                        *ngIf=" (dictionaryForm.controls['Value'].touched || submitted) &&
+                                !dictionaryForm.controls['Value'].errors?.required && dictionaryForm.controls['Value'].errors?.validateNumber ">
+                            *请输入有效数字
+                        </div> 
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText formControlName="Seq">
+                        <label>序列</label>
+                         <div class="ui-message ui-messages-error ui-corner-all"
+                        *ngIf="dictionaryForm.controls['Seq'].touched && !dictionaryForm.controls['Seq'].valid">
+                            *序列必填
+                        </div>
+                         <div class="ui-message ui-messages-error ui-corner-all"
+                        *ngIf=" (dictionaryForm.controls['Seq'].touched || submitted) &&
+                                !dictionaryForm.controls['Seq'].errors?.required && dictionaryForm.controls['Seq'].errors?.validateNumber ">
+                            *请输入有效数字
+                        </div> 
+                    </span>
+                </div>
+            </div>
+
+            </p-panel>
+            <p-toolbar>
+                <div class="ui-toolbar-group-left">
+                    <button pButton type="button" icon="ui-icon-save" class="green-btn" (click)="onSubmit()"></button>
+                    <button pButton type="reset" icon="ui-icon-autorenew" class="orange-btn"></button>
+                </div>
+            </p-toolbar>
+        </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,140 @@
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+        <form [formGroup]="depotdetailForm" novalidate>
+           <div class="card card-w-title">
+            <p-panel [header]="title" [toggleable]="true">
+            <div class="ui-g form-group">
+
+                
+                 <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input id="FromTableName" type="text" pInputText formControlName="FromTableName" class="ng-dirty ng-invalid">
+                        <label>表名</label>
+                        <!-- <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="(depotdetailForm.controls['FromTableName'].touched || submitted) && 
+                               !depotdetailForm.controls['FromTableName'].valid &&
+                               depotdetailForm.controls['FromTableName'].errors?.required ">
+                            *表名必填
+                        </div>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="depotdetailForm.controls['FromTableName'].errors?.pattern">
+                             *只能使用字母、数字
+                        </div>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="depotdetailForm.controls['FromTableName'].errors?.minlength || depotdetailForm.controls['FromTableName'].errors?.maxlength">
+                            *表名长度为4～30个字符
+                        </div>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="depotdetailForm.controls['FromTableName'].errors?.checFromtableName">
+                            *表名已存在
+                        </div>
+                         -->
+                    </span>
+                </div>
+
+                
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText formControlName="FromColumnName">
+                        <label>列名</label>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="(depotdetailForm.controls['FromColumnName'].touched || submitted) && 
+                               depotdetailForm.controls['FromColumnName'].errors?.required ">
+                            *列名必填
+                        </div>
+                    </span>
+                </div>
+                
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText formControlName="BillNo">
+                        <label>单号</label>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="(depotdetailForm.controls['BillNo'].touched || submitted) && 
+                               depotdetailForm.controls['BillNo'].errors?.required ">
+                            *单号必填
+                        </div>
+                    </span>  
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText formControlName="Seqn">
+                        <label>序号</label>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="(depotdetailForm.controls['Seqn'].touched || submitted) && 
+                               depotdetailForm.controls['Seqn'].errors?.required ">
+                            *序号必填
+                        </div>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText formControlName="Amount">
+                        <label>数量</label>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="(depotdetailForm.controls['Amount'].touched || submitted) && 
+                               depotdetailForm.controls['Amount'].errors?.required ">
+                            *数量必填
+                        </div>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText formControlName="Kind">
+                        <label>类型</label>
+                        
+                    </span>
+                </div>
+
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <p-calendar id="calendar" formControlName="Date" placeholder="日期" dateFormat="yy.mm.dd" dataType="string" [locale]="en" ></p-calendar>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="(depotdetailForm.controls['Date'].touched || submitted) && 
+                               depotdetailForm.controls['Date'].errors?.required ">
+                            *日期必填
+                        </div>
+                      
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText formControlName="Depot">
+                        <label>仓库</label>
+                       
+                    </span>
+                </div>
+                 <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText formControlName="State">
+                        <label>状态</label>
+                       
+                    </span>
+                </div>
+                 <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText formControlName="Comment">
+                        <label>备注</label>
+                       
+                    </span>
+                </div>
+                 <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText formControlName="Class">
+                        <label>分类</label>
+                       
+                    </span>
+                </div>
+            </div> 
+        
+            </p-panel>
+            <p-toolbar>
+                <div class="ui-toolbar-group-left">
+                    <button pButton type="button" icon="ui-icon-save" class="green-btn" (click)="onSubmit()"></button>
+                    <button pButton type="reset" icon="ui-icon-autorenew" class="orange-btn"></button>
+                </div>
+            </p-toolbar>
+        </div>
+        </form>
+    </div>
+</div>

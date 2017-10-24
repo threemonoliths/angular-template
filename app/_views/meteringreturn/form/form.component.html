@@ -1,0 +1,117 @@
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+        <form [formGroup]="meteringreturnForm" novalidate>
+        <div class="card card-w-title">
+
+            <p-panel [header]="title" [toggleable]="true">
+
+            <div class="ui-g form-group">
+
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <!--<p-growl [value]="eventbusService.msgs" sticky="sticky"></p-growl>-->
+                        <input id="billno" type="text" pInputText formControlName="billno" class="ng-dirty ng-invalid" [readonly]="!editable">
+                        <label>单号</label>
+                        
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="(meteringreturnForm.controls['billno'].touched || submitted) && 
+                               !meteringreturnForm.controls['billno'].valid &&
+                               meteringreturnForm.controls['billno'].errors?.required ">
+                            *单号必填
+                        </div>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="meteringreturnForm.controls['billno'].errors?.pattern">
+                             *只能使用字母、数字
+                        </div>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="meteringreturnForm.controls['billno'].errors?.minlength || meteringreturnForm.controls['billno'].errors?.maxlength">
+                            *单号长度为4～30个字符
+                        </div>
+                        <!--
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="userForm.controls['username'].errors?.checkUserName">
+                            *用户已存在
+                        </div>-->
+                       
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                         <p-calendar id="calendar" formControlName="billdate" placeholder="时间" dateFormat="yy.mm.dd" dataType="string" [locale]="en" [disabled]="!editable"></p-calendar>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="(meteringreturnForm.controls['billdate'].touched || submitted) && 
+                               meteringreturnForm.controls['billdate'].errors?.required ">
+                            *时间必填
+                        </div>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText formControlName="stockman" [readonly]="!editable">
+                        <label>保管员</label>
+                         <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="(meteringreturnForm.controls['stockman'].touched || submitted) && 
+                               meteringreturnForm.controls['stockman'].errors?.required ">
+                            *保管员必填
+                        </div>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText formControlName="accountingclerk" [readonly]="!editable">
+                        <label>核算员</label>
+                        <div class="ui-message ui-messages-error ui-corner-all" 
+                        *ngIf="(meteringreturnForm.controls['accountingclerk'].touched || submitted) && 
+                               meteringreturnForm.controls['accountingclerk'].errors?.required ">
+                            *核算员必填
+                        </div>
+                    </span>
+                </div>
+               
+                <div class="ui-g-12 ui-md-12">
+                        <span class="md-inputfield">
+                            
+                            <div class="ui-message ui-messages-error ui-corner-all" 
+                            *ngIf="submitted && 
+                                   !detailsChecked ">
+                                *请确保下面的明细表中每条明细记录的“回罐数量”,"回罐库存地"为有效数字
+                            </div>
+                        </span>
+                    </div>
+                <div class="ui-g-12 ui-md-12">
+                    <div>
+                        <p-toolbar>
+                            <div class="ui-toolbar-group-left">
+                                <button pButton type="button" icon="ui-icon-add" class="green-btn" (click)="addMeteringReturnDetail()"></button>
+                                <button pButton type="button" icon="ui-icon-delete" class="red-btn" (click)="deleteMeteringReturnDetail()"></button>
+                            </div>
+                        </p-toolbar>
+                      <p-dataTable [value]="details" [editable]="yesorno" dataKey="id" [(selection)]="selectedDetail" #dt>
+                        <p-column [style]="{'width':'38px'}" selectionMode="single"></p-column>
+                        <p-column field="id" header="id" hidden="true" ></p-column>
+                       
+                        <p-column field="wagonno" header="回罐卡号" [sortable]="true" [editable]="true" ></p-column>
+                        <p-column field="cardno" header="检测卡号" [sortable]="true" [editable]="true" ></p-column>
+                        <p-column field="oilname" header="油品名称" [sortable]="true" [editable]="true" ></p-column>  
+                        <p-column field="unit" header="计量单位" [sortable]="true" [editable]="true" ></p-column>
+                        <p-column field="quantity" header="回罐数量" [sortable]="true" [editable]="true" ></p-column>
+                        <p-column field="stockplace" header="回罐库存地" [sortable]="true" [editable]="true" ></p-column>
+                        <p-column field="comment" header="备注" [sortable]="true" [editable]="true" ></p-column>    
+                        </p-dataTable>
+                    </div>
+                </div>
+            </div>
+        
+            </p-panel>
+            <p-toolbar>
+                <div class="ui-toolbar-group-left">
+
+                    <button pButton type="button" icon="ui-icon-save" class="green-btn" (click)="onSubmit()"></button>
+                    <button pButton type="reset" icon="ui-icon-autorenew" class="orange-btn"></button>
+                    <button pButton type="button" icon="ui-icon-check" class="pink-btn" (click)="onAudited()"></button>
+                </div>
+            </p-toolbar>
+        </div>
+        </form>
+    </div>
+</div>

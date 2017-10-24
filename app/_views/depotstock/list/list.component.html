@@ -1,0 +1,53 @@
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+        <div class="card card-w-title">
+            <div class="ui-g form-group">
+                <div class="ui-g-12 ui-md-2">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText [(ngModel)]="model.OilName " (keyup)="search()">
+                        <label>油品名称</label>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-2">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText [(ngModel)]="model.DepotDate " (keyup)="search()">
+                        <label>更新日期</label>
+                    </span>
+                </div>  
+                <div class="ui-g-12 ui-md-2">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText [(ngModel)]="model.Amount " (keyup)="search()">
+                        <label>数量</label>
+                    </span>
+                </div>  
+                <div class="ui-g-12 ui-md-2">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText [(ngModel)]="model.DepotName " (keyup)="search()">
+                        <label>仓库名称</label>
+                    </span>
+                </div>  
+            </div>
+            <p-toolbar>
+                <div class="ui-toolbar-group-left">
+                    <button pButton type="button" icon="ui-icon-add" class="blue-btn" (click)="newDepotstock()"  title="创建"></button>
+                    <button pButton type="button" icon="ui-icon-update" class="green-btn" (click)="updateDepotstock()"  title="修改"></button>
+                    <button pButton type="button" icon="ui-icon-delete" class="orange-btn" (click)="delete()"  title="删除"></button>
+                </div>
+            </p-toolbar>
+            <p-dataTable [value]="depotstockList" [rows]="recordsPerPage" [paginator]="true" [pageLinks]="3"  dataKey="OilName" 
+                         [lazy]="true" [totalRecords]="totalRecords" (onLazyLoad)="loadLazy($event)"  (onSort)="mySort($event)"
+                         [(selection)]="selectedDepotstock" [globalFilter]="gb" #dt>
+                <p-column [style]="{'width':'38px'}" selectionMode="single"></p-column>
+                <p-column field="OilName" header="油品名称" [sortable]="true" [editable]="true" ></p-column>
+                <p-column field="DepotDate" header="更新日期" [sortable]="true" [editable]="true" ></p-column>
+                <p-column field="Amount" header="数量" [sortable]="true" [editable]="true" ></p-column>
+                <p-column field="DepotName" header="仓库名称" [sortable]="true" [editable]="true" ></p-column>
+            </p-dataTable>
+        </div>
+    </div>
+    <div class="ui-g-12">
+        
+    </div>
+</div>
+
+<p-confirmDialog header="请确认" icon="ui-icon-search" width="425" acceptLabel="确定" rejectLabel="取消"></p-confirmDialog>

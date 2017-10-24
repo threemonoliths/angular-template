@@ -1,0 +1,59 @@
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+        <div class="card card-w-title">
+            <div class="ui-g form-group">
+                <div class="ui-g-12 ui-md-2">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText [(ngModel)]="model.FromTableName" (keyup)="search()">
+                        <label>表名</label>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-2">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText [(ngModel)]="model.Date" (keyup)="search()">
+                        <label>日期</label>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-2">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText [(ngModel)]="model.State" (keyup)="search()">
+                        <label>状态</label>
+                    </span>
+                </div>
+               <div class="ui-g-12 ui-md-2">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText [(ngModel)]="model.Seqn" (keyup)="search()">
+                        <label>序号</label>
+                    </span>
+                </div>
+            </div>
+            <p-toolbar>
+                <div class="ui-toolbar-group-left">
+                     <!-- <button pButton type="button" icon="ui-icon-add" class="green-btn" (click)="new()"></button>
+                    <button pButton type="button" icon="ui-icon-update" class="orange-btn" (click)="update()"></button>
+                    <button pButton type="button" icon="ui-icon-delete" class="red-btn" (click)="delete()"></button>  -->
+                    <button pButton type="button" icon="ui-icon-check" class="pink-btn" (click)="check()"></button>
+                </div>
+            </p-toolbar>
+            <p-dataTable [value]="depotdetailList" [rows]="recordsPerPage" [paginator]="true" [pageLinks]="3"  dataKey="FromTableName" 
+                         [lazy]="true" [totalRecords]="totalRecords" (onLazyLoad)="loadLazy($event)"  (onSort)="mySort($event)"
+                         [(selection)]="selectedDepotDetail" [globalFilter]="gb" #dt>
+                <p-column [style]="{'width':'38px'}" selectionMode="single"></p-column>
+                <p-column field="FromTableName" header="表名" sortable="true" ></p-column>
+                <p-column field="FromColumnName" header="列名" [sortable]="true" [editable]="true"  ></p-column>
+                <p-column field="BillNo" header="单号" [sortable]="true" [editable]="true"  ></p-column>
+                <p-column field="Seqn" header="序号" [sortable]="true" [editable]="true"  ></p-column>
+                <p-column field="Amount" header="数量" [sortable]="true" [editable]="true" ></p-column>
+                <p-column field="Kind" header="类型" [sortable]="true" [editable]="true" ></p-column>
+                <p-column field="Date" header="日期" [sortable]="true" [editable]="true" ></p-column>
+                <p-column field="Depot" header="仓库" [sortable]="true" [editable]="true" ></p-column>
+                <p-column field="State" header="状态" [sortable]="true" [editable]="true" ></p-column>
+                <p-column field="Comment" header="备注" [sortable]="true" [editable]="true" ></p-column>
+                <p-column field="Class" header="分类" [sortable]="true" [editable]="true" ></p-column>
+            </p-dataTable>
+        </div>
+    </div>
+
+</div>
+
+<p-confirmDialog header="请确认" icon="ui-icon-search" width="425" acceptLabel="确定" rejectLabel="取消"></p-confirmDialog>

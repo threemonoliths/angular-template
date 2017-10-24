@@ -1,0 +1,55 @@
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+        <div class="card card-w-title">
+            <div class="ui-g form-group">
+                <div class="ui-g-12 ui-md-2">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText [(ngModel)]="model.companyname" (keyup)="search()">
+                        <label>公司名称</label>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-2">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText [(ngModel)]="model.companyiddr" (keyup)="search()">
+                        <label>公司地址</label>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-2">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText [(ngModel)]="model.legalperson" (keyup)="search()">
+                        <label>法定代表人</label>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-2">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText [(ngModel)]="model.bank" (keyup)="search()">
+                        <label>银行</label>
+                    </span>
+                </div>
+            </div>
+            <p-toolbar>
+                <div class="ui-toolbar-group-left">
+                    <button pButton type="button" icon="ui-icon-add" class="green-btn" (click)="newCompany()"  title="创建"></button>
+                    <button pButton type="button" icon="ui-icon-update" class="orange-btn" (click)="updateCompany()" title="修改"></button>
+                    <button pButton type="button" icon="ui-icon-delete" class="red-btn" (click)="delete()"  title="删除"></button>
+                </div>
+            </p-toolbar>
+            <p-dataTable [value]="companyList" [rows]="recordsPerPage" [paginator]="true" [pageLinks]="3"  dataKey="companyname" 
+                         [lazy]="true" [totalRecords]="totalRecords" (onLazyLoad)="loadLazy($event)"  (onSort)="mySort($event)"
+                         [(selection)]="selectedCompany" [globalFilter]="gb" #dt>
+                <p-column [style]="{'width':'38px'}" selectionMode="single"></p-column>
+                <p-column field="companyname" header="公司名称" sortable="true" ></p-column>
+                <p-column field="companyiddr" header="公司地址" [sortable]="true" [editable]="true"  ></p-column>
+                <p-column field="legalperson" header="法定代表人" [sortable]="true" [editable]="true"  ></p-column>
+                <p-column field="bank" header="银行" [sortable]="true" [editable]="true"  ></p-column>
+                <p-column field="accountnumber" header="账号" [sortable]="true" [editable]="true" ></p-column>
+                <p-column field="zipcode" header="邮编" [sortable]="true" [editable]="true" ></p-column>
+                <p-column field="dutyparagraph" header="税号" [sortable]="true" [editable]="true" ></p-column>
+                <p-column field="kind" header="公司类型" [sortable]="true" [editable]="true" ></p-column>
+            </p-dataTable>
+        </div>
+    </div>
+
+</div>
+
+<p-confirmDialog header="请确认" icon="ui-icon-search" width="425" acceptLabel="确定" rejectLabel="取消"></p-confirmDialog>

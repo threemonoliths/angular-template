@@ -1,0 +1,78 @@
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12">
+        <form [formGroup]="depotstockForm" novalidate>
+        <div class="card card-w-title">
+            <p-panel [header]="title" [toggleable]="true">
+            <div class="ui-g form-group">
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input id="OilName" type="text" pInputText formControlName="OilName" class="ng-dirty ng-invalid">
+                        <label>油品名称</label>
+                         <div class="ui-message ui-messages-error ui-corner-all"
+                        *ngIf="depotstockForm.controls['OilName'].touched &&
+                               !depotstockForm.controls['OilName'].valid &&
+                                depotstockForm.controls['OilName'].errors?.required ">
+                            *油品名称必填
+                        </div>
+                        <div class="ui-message ui-messages-error ui-corner-all"
+                        *ngIf="depotstockForm.controls['OilName'].errors?.pattern">
+                             *只能使用字母、数字、下划线，且已字母开头
+                        </div>
+                        <div class="ui-message ui-messages-error ui-corner-all"
+                        *ngIf="depotstockForm.controls['OilName'].errors?.minlength || depotstockForm.controls['OilName'].errors?.maxlength">
+                            *油品名称长度为4～30个字符
+                        </div>
+                        <div class="ui-message ui-messages-error ui-corner-all"
+                        *ngIf="depotstockForm.controls['OilName'].errors?.forbiddenNameValidator">
+                            *油品名称已存在
+                        </div> 
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input id="DepotDate" type="text" pInputText formControlName="DepotDate">
+                        <label>更新日期</label>
+                         <div class="ui-message ui-messages-error ui-corner-all"
+                        *ngIf="depotstockForm.controls['DepotDate'].touched && !depotstockForm.controls['DepotDate'].valid">
+                            *更新日期必填
+                        </div> 
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText formControlName="Amount">
+                        <label>数量</label>
+                         <div class="ui-message ui-messages-error ui-corner-all"
+                        *ngIf="depotstockForm.controls['Amount'].touched && !depotstockForm.controls['Amount'].valid">
+                            *数量必填
+                        </div> 
+                         <div class="ui-message ui-messages-error ui-corner-all"
+                        *ngIf=" (depotstockForm.controls['Amount'].touched || submitted) &&
+                                !depotstockForm.controls['Amount'].errors?.required && depotstockForm.controls['Amount'].errors?.validateNumber ">
+                            *请输入有效数字
+                        </div>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <span class="md-inputfield">
+                        <input type="text" pInputText formControlName="DepotName">
+                        <label>仓库名称</label>
+                          <div class="ui-message ui-messages-error ui-corner-all"
+                        *ngIf="depotstockForm.controls['DepotName'].touched && !depotstockForm.controls['DepotName'].valid">
+                            *仓名称必填
+                        </div> 
+                    </span>
+                </div>
+            </div>
+
+            </p-panel>
+            <p-toolbar>
+                <div class="ui-toolbar-group-left">
+                    <button pButton type="button" icon="ui-icon-save" class="green-btn" (click)="onSubmit()"></button>
+                    <button pButton type="reset" icon="ui-icon-autorenew" class="orange-btn"></button>
+                </div>
+            </p-toolbar>
+        </div>
+        </form>
+    </div>
+</div>
